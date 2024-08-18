@@ -8,3 +8,4 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ('title', 'author')
     list_filter = ('publication_year',)
 # Register your models here.
+["from .models import Book"]
