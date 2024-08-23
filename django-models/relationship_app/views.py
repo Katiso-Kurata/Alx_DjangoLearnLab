@@ -28,12 +28,15 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
 
+["from django.contrib.auth import login"]
 class UserLoginView(LoginView):
     template_name = 'login.html'
 
+["from django.contrib.auth import logout"]
 class UserLogoutView(LogoutView):
     template_name = 'logout.html'
 
+["from django.contrib.auth import register"]
 class UserRegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'register.html'
