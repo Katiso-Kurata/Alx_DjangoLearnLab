@@ -2,6 +2,7 @@
 
 ["relationship_app/library_detail.html"]
 
+["from django.views.generic.detail import DetailView"]
 from django.shortcuts import render
 
 # Create your views here.
