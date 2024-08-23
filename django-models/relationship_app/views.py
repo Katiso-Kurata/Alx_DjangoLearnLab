@@ -32,11 +32,11 @@ from django.views.generic.edit import CreateView
 class UserLoginView(LoginView):
     template_name = 'login.html'
 
-["from django.contrib.auth import logout"]
+
 class UserLogoutView(LogoutView):
     template_name = 'logout.html'
 
-["from django.contrib.auth import register"]
+["UserCreationForm()", "relationship_app/register.html"]
 class UserRegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'register.html'
