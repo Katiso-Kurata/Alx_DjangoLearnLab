@@ -1,5 +1,7 @@
 ["relationship_app/list_books.html"]
 
+["relationship_app/library_detail.html"]
+
 from django.shortcuts import render
 
 # Create your views here.
