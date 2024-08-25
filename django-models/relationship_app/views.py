@@ -68,3 +68,27 @@ def librarian_view(request):
 @login_required
 def member_view(request):
     return render(request, 'member_view.html', {'role': 'Member'})
+
+#meta
+# relationship_app/views.py
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import permission_required
+from .models import Book
+
+@permission_required('relationship_app.can_add_book')
+def add_book(request):
+    # Logic to add a book
+    pass
+
+@permission_required('relationship_app.can_change_book')
+def edit_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    # Logic to edit a book
+    pass
+
+@permission_required('relationship_app.can_delete_book')
+def delete_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    # Logic to delete a book
+    pass
