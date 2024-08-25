@@ -37,3 +37,4 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+["class CustomUser(AbstractUser):", "date_of_birth", "profile_photo"]
