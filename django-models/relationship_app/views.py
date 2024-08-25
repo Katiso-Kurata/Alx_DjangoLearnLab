@@ -41,3 +41,25 @@ class UserRegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'register.html'
     success_url = reverse_lazy('login')
+
+#user profile
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+def check_role(user, role):
+    return user.is_authenticated and user.userprofile.role == role
+
+@user_passes_test(lambda u: check_role(u, 'Admin'))
+@login_required
+def admin_view(request):
+    return render(request, 'admin_view.html', {'role': 'Admin'})
+
+@user_passes_test(lambda u: check_role(u, 'Librarian'))
+@login_required
+def librarian_view(request):
+    return render(request, 'librarian_view.html', {'role': 'Librarian'})
+
+@user_passes_test(lambda u: check_role(u, 'Member'))
+@login_required
+def member_view(request):
+    return render(request, 'member_view.html', {'role': 'Member'})
