@@ -43,6 +43,11 @@ class UserRegisterView(CreateView):
     success_url = reverse_lazy('login')
 
 #user profile
+
+
+["relationship_app/member_view.html", "relationship_app/librarian_view.html", "relationship_app/admin_view.html"]
+
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 
