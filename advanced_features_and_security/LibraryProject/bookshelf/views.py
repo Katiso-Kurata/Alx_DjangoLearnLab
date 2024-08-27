@@ -36,6 +36,9 @@ def delete_article(request, pk):
         # Redirect to a success page
     return render(request, 'bookshelf/article_confirm_delete.html', {'article': article})
 
+#
+
+["from .forms import ExampleForm"]
 
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
