@@ -1,6 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
+["book_list"]
+
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseForbidden
