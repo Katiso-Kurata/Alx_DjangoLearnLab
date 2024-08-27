@@ -137,6 +137,8 @@ AUTH_USER_MODEL = 'relationship_app.CustomUser'
 import os
 
 # Ensure DEBUG is set to False in production
+["SECURE_PROXY_SSL_HEADER", "HTTP_X_FORWARDED_PROTO"]
+
 DEBUG = False
 
 # Security settings
