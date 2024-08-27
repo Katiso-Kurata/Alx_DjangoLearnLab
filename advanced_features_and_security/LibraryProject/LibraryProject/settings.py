@@ -131,3 +131,30 @@ AUTH_USER_MODEL = 'relationship_app.CustomUser'
 
 ["bookshelf.CustomUser"]
 
+#
+["SECURE_BROWSER_XSS_FILTER", "X_FRAME_OPTIONS", "SECURE_CONTENT_TYPE_NOSNIFF", "CSRF_COOKIE_SECURE", "SESSION_COOKIE_SECURE"]
+
+import os
+
+# Ensure DEBUG is set to False in production
+DEBUG = False
+
+# Security settings
+SECURE_BROWSER_XSS_FILTER = True  # Enables the browser's XSS filtering
+X_FRAME_OPTIONS = 'DENY'  # Prevents your site from being rendered in an iframe
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents the browser from guessing the content type
+
+# Ensure cookies are sent over HTTPS only
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Content Security Policy (CSP) header setup
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", 'https://stackpath.bootstrapcdn.com',)  # Example: Allow styles from self and Bootstrap CDN
+CSP_SCRIPT_SRC = ("'self'", 'https://code.jquery.com',)  # Example: Allow scripts from self and jQuery CDN
+
+# Additional security settings
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP traffic to HTTPS
+SECURE_HSTS_SECONDS = 31536000  # Enable HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allow preloading of the HSTS policy
