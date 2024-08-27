@@ -130,3 +130,4 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'relationship_app.CustomUser'
 
 ["bookshelf.CustomUser"]
+
