@@ -79,6 +79,12 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql',  # Specify PostgreSQL
+        'NAME': 'your_database_name',               # Database name
+        'USER': 'your_database_user',               # Database user
+        'PASSWORD': 'your_password',                # Database password
+        'HOST': 'localhost',                        # Set to 'localhost' or your DB server's IP
+        'PORT': '5432',                             # Default PostgreSQL port
     }
 }
 
@@ -135,3 +141,4 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / 'templates'],
     },
 ]
+
