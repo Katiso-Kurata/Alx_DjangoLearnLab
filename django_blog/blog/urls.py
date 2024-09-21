@@ -16,9 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.contrib.auth import views as auth_views
-from blog.views import RegisterView, ProfileView
+from .views import RegisterView, ProfileView
+from . import views
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,5 +28,10 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('', include('blog.urls')),
+
+    path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='blog/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='blog/logout.html'), name='logout'),
+    path('profile/', views.profile, name='profile'),
 ]
+
