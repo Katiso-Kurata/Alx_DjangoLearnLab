@@ -29,7 +29,8 @@ from . import views
     add_comment,
     CommentCreateView,
     CommentUpdateView,
-    CommentDeleteView
+    CommentDeleteView,
+    PostSearchView,
 )
 
 

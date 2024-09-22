@@ -101,6 +101,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
     template_name = 'blog/post_form.html'
+    success_url = '/'
 
     def form_valid(self, form):
         form.instance.author = self.request.user  # Set the author to the logged-in user
@@ -114,6 +115,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+        success_url = '/'
 
     def test_func(self):
         post = self.get_object()
