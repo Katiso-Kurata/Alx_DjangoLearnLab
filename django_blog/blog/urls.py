@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import CommentDeleteView, CommentUpdateView, PostCreateView, PostDeleteView, PostDetailView, PostListView, PostUpdateView, RegisterView, ProfileView, add_comment
+from .views import CommentCreateView, CommentDeleteView, CommentUpdateView, PostCreateView, PostDeleteView, PostDetailView, PostListView, PostUpdateView, RegisterView, ProfileView, add_comment
 from . import views 
 ( 
     PostListView,
@@ -27,6 +27,7 @@ from . import views
     PostUpdateView,
     PostDeleteView,
     add_comment,
+    CommentCreateView,
     CommentUpdateView,
     CommentDeleteView
 )
@@ -50,6 +51,7 @@ urlpatterns = [
     path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete'),
     path('post/<int:post_id>/comments/new/', add_comment, name='add-comment'),
+    path('post/<int:post_id>/comments/new/', CommentCreateView.as_view(), name='add-comment'),
     path('comment/<int:pk>/update/', CommentUpdateView.as_view(), name='comment-update'),
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 ]

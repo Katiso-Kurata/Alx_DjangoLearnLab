@@ -6,4 +6,5 @@
     {{ form.as_p }}
     <button type="submit">Add Comment</button>
 </form>
+<a href="{% url 'post-detail' pk=object.post.id %}">Back to Post</a>
 {% endblock %}

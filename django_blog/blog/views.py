@@ -79,6 +79,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic.edit import CreateView
+from .models import Comment
 from .models import Post, Comment
 from .forms import CommentForm
 
@@ -164,3 +166,19 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author
+    
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'blog/add_comment.html'
+
+    def form_valid(self, form):
+        post_id = self.kwargs.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        form.instance.post = post  # Associate the comment with the post
+        form.instance.author = self.request.user  # Set the comment author as the current user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        post_id = self.kwargs.get('post_id')
+        return reverse_lazy('post-detail', kwargs={'pk': post_id})
