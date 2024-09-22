@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import CommentCreateView, CommentDeleteView, CommentUpdateView, PostCreateView, PostDeleteView, PostDetailView, PostListView, PostUpdateView, RegisterView, ProfileView, add_comment
+from .views import CommentCreateView, CommentDeleteView, CommentUpdateView, PostCreateView, PostDeleteView, PostDetailView, PostListView, PostSearchView, PostUpdateView, RegisterView, ProfileView, add_comment
 from . import views 
 ( 
     PostListView,
@@ -54,5 +54,7 @@ urlpatterns = [
     path('post/<int:pk>/comments/new/', CommentCreateView.as_view(), name='add-comment'),
     path('comment/<int:pk>/update/', CommentUpdateView.as_view(), name='comment-update'),
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
+    path('search/', PostSearchView.as_view(), name='post-search'),  # Add this line for search functionality
+    path('tags/<str:tag_name>/', PostListView.as_view(), name='post-by-tag'),
 ]
 
