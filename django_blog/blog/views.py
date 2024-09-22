@@ -86,6 +86,7 @@ from .forms import CommentForm
 from django.db.models import Q
 from django.views.generic import ListView
 from .models import Post
+from taggit.models import Tag
 
 class PostListView(ListView):
     model = Post
@@ -202,3 +203,22 @@ class PostSearchView(ListView):
                 Q(tags__name__icontains=query)
             ).distinct()
         return Post.objects.none()
+    
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/post_list.html'
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        # Get the tag from the URL
+        tag_slug = self.kwargs.get('tag_slug')
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        # Filter posts by this tag
+        return Post.objects.filter(tags__in=[tag])
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass the current tag to the template
+        context['tag'] = get_object_or_404(Tag, slug=self.kwargs.get('tag_slug'))
+        return context
