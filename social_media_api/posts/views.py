@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 # posts/views.py
 
-from rest_framework import viewsets, permissions, filters
+from rest_framework import viewsets, permissions, filters, generics
 
 from social_media_api.posts.permissions import IsOwnerOrReadOnly
 from .models import Post, Comment
@@ -40,3 +40,11 @@ class PostViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'content']
 
+class UserFeedView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # Get the posts from the users the current user is following
+        following_users = self.request.user.following.all()
+        return Post.objects.filter(author__in=following_users).order_by('-created_at')

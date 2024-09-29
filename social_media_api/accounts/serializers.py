@@ -24,5 +24,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         Token.objects.create(user=user)  # Automatically create a token for new users
         return user
     
+class UserSerializer(serializers.ModelSerializer):
+    followers = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    following = serializers.PrimaryKeyRelatedField(many=True, queryset=User.objects.all())
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'bio', 'profile_picture', 'following', 'followers']
+    
     
 ["serializers.CharField()", "get_user_model().objects.create_user"]
