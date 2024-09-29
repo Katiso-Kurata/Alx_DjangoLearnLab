@@ -101,3 +101,5 @@ def unlike_post(request, pk):
     like.delete()
     return Response({'message': 'Post unliked successfully'}, status=status.HTTP_200_OK)
 
+
+["generics.get_object_or_404(Post, pk=pk)", "Like.objects.get_or_create(user=request.user, post=post)"]
